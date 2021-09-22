@@ -15,9 +15,13 @@ export default class CharDetails extends Component {
     fetchService = new FetchService();
 
     //only when we will update(when props are passed) we will fetch character by id and set it into our state
-    componentDidUpdate() {
-        console.log('updated char details')
-        this.getCharacterById()
+    componentDidUpdate(prevProps) {
+        //only call function if previous props are not equal current props, else it will update infinetly
+        if (this.props.charId !== prevProps.charId) {
+            console.log('updated char details')
+            this.getCharacterById()
+        }
+
     }
 
     getCharacterById = () => {
@@ -35,6 +39,8 @@ export default class CharDetails extends Component {
                         }
                     })
                 })
+        } else {
+            return;
         }
     }
 
