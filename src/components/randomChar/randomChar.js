@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './randomChar.css';
 import FetchService from '../../services/FetchService';
+import Loading from '../Loading';
 export default class RandomChar extends Component {
     constructor(props) {
         super(props);
@@ -9,6 +10,7 @@ export default class RandomChar extends Component {
 
     fetchService = new FetchService();
     state = {
+        loading: true,
         name: null,
         gender: null,
         born: null,
@@ -28,35 +30,36 @@ export default class RandomChar extends Component {
                     gender: gender || 'no info',
                     born: born || 'no info',
                     died: died || 'no info',
-                    culture: culture || 'no info'
+                    culture: culture || 'no info',
+                    loading: false
                 })
             })
 
     }
 
     render() {
-        const { name, gender, born, died, culture } = this.state;
+        const { name, gender, born, died, culture, loading } = this.state;
         return (
             <div className="random-block rounded">
-                <h4>Random Character: {name}</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Gender </span>
-                        <span>{gender}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Born </span>
-                        <span>{born}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Died </span>
-                        <span>{died}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span className="term">Culture </span>
-                        <span>{culture}</span>
-                    </li>
-                </ul>
+                {loading ? <Loading /> : <><h4>Random Character: {name}</h4>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item d-flex justify-content-between">
+                            <span className="term">Gender </span>
+                            <span>{gender}</span>
+                        </li>
+                        <li className="list-group-item d-flex justify-content-between">
+                            <span className="term">Born </span>
+                            <span>{born}</span>
+                        </li>
+                        <li className="list-group-item d-flex justify-content-between">
+                            <span className="term">Died </span>
+                            <span>{died}</span>
+                        </li>
+                        <li className="list-group-item d-flex justify-content-between">
+                            <span className="term">Culture </span>
+                            <span>{culture}</span>
+                        </li>
+                    </ul> </>}
             </div>
         );
     }
