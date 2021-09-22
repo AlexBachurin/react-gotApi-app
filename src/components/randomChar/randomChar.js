@@ -5,10 +5,8 @@ import Loading from '../Loading';
 import Error from '../Error';
 
 export default class RandomChar extends Component {
-    constructor(props) {
-        super(props);
-        this.randomChar();
-    }
+
+
 
     fetchService = new FetchService();
     state = {
@@ -20,6 +18,21 @@ export default class RandomChar extends Component {
         died: null,
         culture: null
     }
+    componentDidMount() {
+        //show random character on mount
+        this.randomChar();
+        console.log('mounted');
+        //update random character every 3 sec
+        this.timerId = setInterval(() => {
+            console.log('update')
+            this.randomChar();
+        }, 30000);
+
+    }
+    componentWillUnmount() {
+        clearInterval(this.timerId)
+    }
+
     //show random user on every component load
     randomChar() {
         //get random id

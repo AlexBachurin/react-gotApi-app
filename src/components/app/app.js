@@ -11,7 +11,8 @@ class App extends Component {
 
     //state for toggle button to show random character
     state = {
-        showRandom: false
+        showRandom: false,
+        charId: null
     }
 
     //function to help toggle random character
@@ -22,7 +23,17 @@ class App extends Component {
             }
         })
     }
+
+    //get id of clicked character to show in details
+    getCharacterId = (e) => {
+        console.log(e.target.id)
+        const clickedId = e.target.id;
+        this.setState({
+            charId: clickedId
+        })
+    }
     render() {
+        const { showRandom, charId } = this.state;
         return (
             <>
                 <Container>
@@ -32,7 +43,7 @@ class App extends Component {
                     <Row>
                         <Col lg={{ size: 5, offset: 0 }}>
                             {/* if showRandom in true state, dont display random char component, if not display it */}
-                            {this.state.showRandom ? null : <RandomChar />}
+                            {showRandom ? null : <RandomChar />}
                             <Button onClick={this.handleToggle} className="toggle-btn" variant="primary" size="lg">
                                 Toggle Character
                             </Button>{' '}
@@ -40,10 +51,10 @@ class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList getCharacterId={this.getCharacterId} />
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails charId={charId} />
                         </Col>
                     </Row>
                 </Container>
