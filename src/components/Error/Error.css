@@ -4,4 +4,9 @@
   font-size: 1.5rem;
   letter-spacing: 0.3rem;
   line-height: 2rem;
+  text-align: center;
+}
+.error-image {
+  display: block;
+  margin: 0 auto;
 }

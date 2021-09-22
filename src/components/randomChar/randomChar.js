@@ -23,7 +23,7 @@ export default class RandomChar extends Component {
     randomChar() {
         //get random id
         // const randomId = Math.floor(Math.random() * 131)
-        const randomId = 133333;
+        const randomId = 333333;
         this.fetchService.getSingleCharacter(randomId)
             .then((char) => {
                 const { name, gender, born, died, culture } = char;
