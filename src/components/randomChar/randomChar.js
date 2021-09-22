@@ -20,8 +20,8 @@ export default class RandomChar extends Component {
     //show random user on every component load
     randomChar() {
         //get random id
-        const randomId = Math.floor(Math.random() * 131)
-
+        // const randomId = Math.floor(Math.random() * 131)
+        const randomId = 133333;
         this.fetchService.getSingleCharacter(randomId)
             .then((char) => {
                 const { name, gender, born, died, culture } = char;
@@ -33,6 +33,9 @@ export default class RandomChar extends Component {
                     culture: culture || 'no info',
                     loading: false
                 })
+            })
+            .catch(error => {
+                console.log(error);
             })
 
     }
