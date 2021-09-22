@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './randomChar.css';
 import FetchService from '../../services/FetchService';
 import Loading from '../Loading';
+import Error from '../Error';
 export default class RandomChar extends Component {
     constructor(props) {
         super(props);
@@ -11,6 +12,7 @@ export default class RandomChar extends Component {
     fetchService = new FetchService();
     state = {
         loading: true,
+        error: false,
         name: null,
         gender: null,
         born: null,
@@ -34,14 +36,21 @@ export default class RandomChar extends Component {
                     loading: false
                 })
             })
+            //if error on fetch change error state to true
             .catch(error => {
                 console.log(error);
+                this.setState({
+                    ...this.state, error: true
+                })
             })
 
     }
 
     render() {
-        const { name, gender, born, died, culture, loading } = this.state;
+        const { name, gender, born, died, culture, loading, error } = this.state;
+        if (error) {
+            return <Error />
+        }
         return (
             <div className="random-block rounded">
                 {loading ? <Loading /> : <><h4>Random Character: {name}</h4>
