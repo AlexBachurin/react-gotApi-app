@@ -21,13 +21,14 @@ export default class RandomChar extends Component {
         const randomId = Math.floor(Math.random() * 131)
 
         this.fetchService.getSingleCharacter(randomId)
-            .then(({ name, gender, born, died, culture }) => {
+            .then((char) => {
+                const { name, gender, born, died, culture } = char;
                 this.setState({
-                    name,
-                    gender,
-                    born,
-                    died,
-                    culture
+                    name: name || 'no info',
+                    gender: gender || 'no info',
+                    born: born || 'no info',
+                    died: died || 'no info',
+                    culture: culture || 'no info'
                 })
             })
 
