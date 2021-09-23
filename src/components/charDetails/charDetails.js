@@ -3,6 +3,21 @@ import FetchService from '../../services/FetchService';
 import './charDetails.css';
 import Loading from '../Loading';
 import Error from '../Error';
+
+//component for rendering field of ItemDetails
+const Field = ({ item, field, label }) => {
+    return (
+        <li className="list-group-item d-flex justify-content-between">
+            <span className="term">{label}</span>
+            {/* get field of item we get from api, since we get object, we use item[field] */}
+            <span>{item[field]}</span>
+        </li>
+    )
+}
+
+export { Field };
+
+
 export default class CharDetails extends Component {
 
 
@@ -63,7 +78,8 @@ export default class CharDetails extends Component {
 
     render() {
 
-        const { loading, error } = this.state;
+        const { loading, error, item } = this.state;
+        const { name } = item;
         const { itemId } = this.props;
         if (error) {
             return <Error />
@@ -73,34 +89,22 @@ export default class CharDetails extends Component {
         }
         return (
             <>
-                {loading ? <Loading /> : <ViewComponent {...this.state.item} />}
+                {loading ? <Loading /> : <div className="char-details rounded">
+                    <h4>{name}</h4>
+                    <ul className="list-group list-group-flush">
+                        {/* display all Field components we get from parent */}
+                        {
+                            //since we cant directly change child, we using map 
+                            //and cloning element with adding item from state to it
+                            React.Children.map(this.props.children, (child) => {
+
+                                return React.cloneElement(child, { item })
+                            })
+                        }
+                    </ul>
+                </div>}
             </>
         );
     }
 }
 
-const ViewComponent = ({ name, gender, born, died, culture }) => {
-    return (
-        <div className="char-details rounded">
-            <h4>{name}</h4>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Gender</span>
-                    <span>{gender}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Born</span>
-                    <span>{born}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Died</span>
-                    <span>{died}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Culture</span>
-                    <span>{culture}</span>
-                </li>
-            </ul>
-        </div>
-    )
-}

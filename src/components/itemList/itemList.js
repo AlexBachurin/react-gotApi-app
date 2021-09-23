@@ -13,6 +13,7 @@ export default class ItemList extends Component {
 
     componentDidMount() {
         this.getItemList();
+
     }
     //fetch items
     getItemList = () => {
@@ -49,7 +50,7 @@ export default class ItemList extends Component {
             const itemUrl = item.url;
             const id = itemUrl.replace(/\D/g, "")
             return (
-                <li onClick={getItemId} id={id} key={id} className="list-group-item">
+                <li name={`${itemUrl}`} onClick={getItemId} id={id} key={id} className="list-group-item">
                     {item.name}
                 </li>
             )

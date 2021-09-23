@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import ItemList from '../components/itemList'
-import CharDetails from '../components/charDetails'
+import CharDetails, { Field } from '../components/charDetails'
 
 
 export default class CharactersPage extends Component {
@@ -12,7 +12,10 @@ export default class CharactersPage extends Component {
                     <ItemList getAllItems={this.props.getAllItems} getItemId={this.props.getItemId} />
                 </Col>
                 <Col md='6'>
-                    <CharDetails itemId={this.props.itemId} />
+                    <CharDetails itemId={this.props.itemId}>
+                        <Field field='gender' label='gender'></Field>
+                        <Field field='born' label='born'></Field>
+                    </CharDetails>
                 </Col>
             </Row>
         )
