@@ -9,7 +9,7 @@ export default class BooksPage extends Component {
         return (
             <Row>
                 <Col md='6'>
-                    <ItemList getItemId={this.props.getItemId} />
+                    <ItemList getAllItems={this.props.getAllItems} getItemId={this.props.getItemId} />
                 </Col>
                 <Col md='6'>
                     <CharDetails itemId={this.props.itemId} />

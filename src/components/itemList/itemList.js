@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './itemList.css';
-import FetchService from '../../services/FetchService';
 import Loading from '../Loading';
 import Error from '../Error';
 export default class ItemList extends Component {
-    service = new FetchService();
+
 
     state = {
         itemList: [],
@@ -17,7 +16,8 @@ export default class ItemList extends Component {
     }
     //fetch items
     getItemList = () => {
-        this.service.getAllCharacters()
+        const { getAllItems } = this.props;
+        getAllItems()
             .then(list => {
                 this.setState({
                     itemList: list,

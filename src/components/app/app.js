@@ -2,14 +2,15 @@ import React from 'react';
 import { Col, Row, Container } from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
 import Button from 'reactstrap/lib/Button';
 import { Component } from 'react';
 import CharactersPage from '../../pages/CharactersPage';
-
+import BooksPage from '../../pages/BooksPage';
+import HousesPage from '../../pages/HousesPage'
+import FetchService from '../../services/FetchService';
 class App extends Component {
 
+    fetchService = new FetchService();
     //state for toggle button to show random character
     state = {
         showRandom: false,
@@ -49,7 +50,9 @@ class App extends Component {
                             </Button>{' '}
                         </Col>
                     </Row>
-                    <CharactersPage getItemId={this.getItemId} itemId={itemId} />
+                    <CharactersPage getAllItems={this.fetchService.getAllCharacters} getItemId={this.getItemId} itemId={itemId} />
+                    {/* <BooksPage getAllItems={this.fetchService.getAllBooks} getItemId={this.getItemId} itemId={itemId} />
+                    <HousesPage getAllItems={this.fetchService.getAllHouses} getItemId={this.getItemId} itemId={itemId} /> */}
                 </Container>
             </>
         );
