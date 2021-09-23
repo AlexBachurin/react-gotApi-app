@@ -6,13 +6,14 @@ import ItemList from '../itemList';
 import CharDetails from '../charDetails';
 import Button from 'reactstrap/lib/Button';
 import { Component } from 'react';
+import CharactersPage from '../../pages/CharactersPage';
 
 class App extends Component {
 
     //state for toggle button to show random character
     state = {
         showRandom: false,
-        charId: null
+        itemId: null
     }
 
     //function to help toggle random character
@@ -24,16 +25,15 @@ class App extends Component {
         })
     }
 
-    //get id of clicked character to show in details
-    getCharacterId = (e) => {
-        console.log(e.target.id)
+    //get id of clicked item to show in details
+    getItemId = (e) => {
         const clickedId = e.target.id;
         this.setState({
-            charId: clickedId
+            itemId: clickedId
         })
     }
     render() {
-        const { showRandom, charId } = this.state;
+        const { showRandom, itemId } = this.state;
         return (
             <>
                 <Container>
@@ -49,14 +49,7 @@ class App extends Component {
                             </Button>{' '}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList getCharacterId={this.getCharacterId} />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails charId={charId} />
-                        </Col>
-                    </Row>
+                    <CharactersPage getItemId={this.getItemId} itemId={itemId} />
                 </Container>
             </>
         );

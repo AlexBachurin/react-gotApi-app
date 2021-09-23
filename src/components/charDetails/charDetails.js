@@ -58,11 +58,6 @@ export default class CharDetails extends Component {
                         error: true
                     })
                 })
-            // } else {
-            //     this.setState({
-            //         loading: false
-            //     })
-
         }
     }
 

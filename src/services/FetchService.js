@@ -63,6 +63,28 @@ export default class FetchService extends Component {
             culture: culture || 'no-info',
         }
     }
+
+    //transform book
+    transformBook({ url, name, numberOfPages, publisher, released }) {
+        return {
+            url: url,
+            name: name || 'no-info',
+            numberOfPages: numberOfPages || 'no-info',
+            gender: publisher || 'no-info',
+            released: released || 'no-info',
+        }
+    }
+    //transform houses
+    transformHouses({ url, name, region, words, titles, ancestralWeapon }) {
+        return {
+            url: url,
+            name: name || 'no-info',
+            region: region || 'no-info',
+            words: words || 'no-info',
+            titles: titles || 'no-info',
+            ancestralWeapon: ancestralWeapon || 'no-info'
+        }
+    }
 }
 
 
