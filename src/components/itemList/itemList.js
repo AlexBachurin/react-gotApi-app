@@ -13,10 +13,10 @@ export default class ItemList extends Component {
     }
 
     componentDidMount() {
-        this.getCharacterList();
+        this.getItemList();
     }
-    //fetch characters
-    getCharacterList = () => {
+    //fetch items
+    getItemList = () => {
         this.service.getAllCharacters()
             .then(list => {
                 this.setState({

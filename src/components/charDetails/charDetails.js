@@ -22,7 +22,7 @@ export default class CharDetails extends Component {
     //only when we will update(when props are passed) we will fetch character by id and set it into our state
     componentDidUpdate(prevProps) {
         //only call function if previous props are not equal current props, else it will update infinetly
-        if (this.props.charId !== prevProps.charId) {
+        if (this.props.itemId !== prevProps.itemId) {
             console.log('updated char details')
             //need to setup loading here, then if we sucessfully fetch we disable loading again
             this.setState({
@@ -42,7 +42,7 @@ export default class CharDetails extends Component {
     }
 
     getCharacterById = () => {
-        const id = this.props.charId;
+        const id = this.props.itemId;
         if (id) {
             this.fetchService.getSingleCharacter(id)
                 .then(item => {
@@ -64,11 +64,11 @@ export default class CharDetails extends Component {
     render() {
 
         const { loading, error } = this.state;
-        const { charId } = this.props;
+        const { itemId } = this.props;
         if (error) {
             return <Error />
         }
-        if (!charId) {
+        if (!itemId) {
             return <h3 className="select-char">Select character to see details</h3>
         }
         return (

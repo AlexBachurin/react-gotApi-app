@@ -12,7 +12,7 @@ export default class CharactersPage extends Component {
                     <ItemList getItemId={this.props.getItemId} />
                 </Col>
                 <Col md='6'>
-                    <CharDetails charId={this.props.itemId} />
+                    <CharDetails itemId={this.props.itemId} />
                 </Col>
             </Row>
         )
