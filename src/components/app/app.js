@@ -36,7 +36,7 @@ class App extends Component {
                     <Header />
                 </Container>
                 <Container>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Row>
                             <Col lg={{ size: 5, offset: 0 }}>
                                 {/* if showRandom in true state, dont display random char component, if not display it */}

@@ -39,7 +39,7 @@ export default class FetchService extends Component {
     }
     //get book by id
     getSingleBook = async (id) => {
-        const book = this.getData(`/books/${id}`);
+        const book = await this.getData(`/books/${id}`);
         return this.transformBook(book);
 
     }

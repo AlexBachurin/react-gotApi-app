@@ -31,7 +31,7 @@ export default class ItemDetails extends Component {
 
 
     componentDidMount() {
-        this.getCharacterById();
+        this.getItemById();
     }
 
     //only when we will update(when props are passed) we will fetch character by id and set it into our state
@@ -43,7 +43,7 @@ export default class ItemDetails extends Component {
             this.setState({
                 loading: true
             })
-            this.getCharacterById()
+            this.getItemById()
 
         }
     }
@@ -56,7 +56,7 @@ export default class ItemDetails extends Component {
         })
     }
 
-    getCharacterById = () => {
+    getItemById = () => {
         const id = this.props.itemId;
         const { getSingleItem } = this.props;
         if (id) {
