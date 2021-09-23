@@ -51,8 +51,8 @@ class App extends Component {
                         </Col>
                     </Row>
                     <CharactersPage getAllItems={this.fetchService.getAllCharacters} getItemId={this.getItemId} itemId={itemId} />
-                    {/* <BooksPage getAllItems={this.fetchService.getAllBooks} getItemId={this.getItemId} itemId={itemId} />
-                    <HousesPage getAllItems={this.fetchService.getAllHouses} getItemId={this.getItemId} itemId={itemId} /> */}
+                    <BooksPage getAllItems={this.fetchService.getAllBooks} getItemId={this.getItemId} itemId={itemId} />
+                    <HousesPage getAllItems={this.fetchService.getAllHouses} getItemId={this.getItemId} itemId={itemId} />
                 </Container>
             </>
         );

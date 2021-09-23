@@ -33,22 +33,26 @@ export default class FetchService extends Component {
         return this.transformCharacter(character)
     }
     //get Books
-    getAllBooks() {
-        return this.getData('/books')
+    getAllBooks = async () => {
+        const books = await this.getData('/books')
+        return books.map(this.transformBook)
     }
     //get book by id
-    getSingleBook(id) {
-        return this.getData(`/books/${id}`);
+    getSingleBook = async (id) => {
+        const book = this.getData(`/books/${id}`);
+        return this.transformBook(book);
 
     }
     //get houses
-    getAllHouses() {
-        this.getData('/houses');
+    getAllHouses = async () => {
+        const houses = await this.getData('/houses');
+        return houses.map(this.transformHouses)
 
     }
     //get specific house
-    getSingleHouse(id) {
-        this.getData(`/houses/${id}`);
+    getSingleHouse = async (id) => {
+        const house = await this.getData(`/houses/${id}`);
+        return this.transformHouses(house)
 
     }
 
