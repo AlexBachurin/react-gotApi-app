@@ -65,6 +65,7 @@ export default class FetchService extends Component {
             gender: gender || 'no-info',
             died: died || 'no-info',
             culture: culture || 'no-info',
+            category: 'character'
         }
     }
 
@@ -76,6 +77,7 @@ export default class FetchService extends Component {
             numberOfPages: numberOfPages || 'no-info',
             publisher: publisher || 'no-info',
             released: released || 'no-info',
+            category: 'book'
         }
     }
     //transform houses
@@ -86,7 +88,8 @@ export default class FetchService extends Component {
             region: region || 'no-info',
             words: words || 'no-info',
             titles: titles || 'no-info',
-            ancestralWeapon: ancestralWeapon || 'no-info'
+            ancestralWeapon: ancestralWeapon || 'no-info',
+            category: 'house'
         }
     }
 }

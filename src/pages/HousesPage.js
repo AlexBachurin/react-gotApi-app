@@ -13,10 +13,9 @@ export default class BooksPage extends Component {
     }
 
     //get id of clicked item to show in details
-    getItemId = (e) => {
-        const clickedId = e.target.id;
+    getItemId = (id) => {
         this.setState({
-            itemId: clickedId
+            itemId: id
         })
     }
     componentDidCatch() {

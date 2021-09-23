@@ -86,7 +86,7 @@ export default class ItemDetails extends Component {
             return <Error />
         }
         if (!itemId) {
-            return <h3 className="select-char">Select character to see details</h3>
+            return <h3 className="select-char">Select item to see details</h3>
         }
         return (
             <>

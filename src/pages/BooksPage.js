@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import ItemList from '../components/itemList'
-import ItemDetails, { Field } from '../components/itemDetails'
 import Error from '../components/Error'
+import { withRouter } from 'react-router'
 
-export default class BooksPage extends Component {
+
+class BooksPage extends Component {
 
     //state for storing clicked element id for every page
     state = {
@@ -13,10 +14,9 @@ export default class BooksPage extends Component {
     }
 
     //get id of clicked item to show in details
-    getItemId = (e) => {
-        const clickedId = e.target.id;
+    getItemId = (id) => {
         this.setState({
-            itemId: clickedId
+            itemId: id
         })
     }
     componentDidCatch() {
@@ -33,16 +33,21 @@ export default class BooksPage extends Component {
         return (
             <Row>
                 <Col md='6'>
-                    <ItemList getAllItems={this.props.getAllItems} getItemId={this.getItemId} />
+                    <ItemList getAllItems={this.props.getAllItems} getItemId={(itemId) => {
+                        //push id to history so we can use it in SingleBook
+                        this.props.history.push(`/books/${itemId}`)
+                    }} />
                 </Col>
-                <Col md='6'>
+                {/* <Col md='6'>
                     <ItemDetails getSingleItem={this.props.getSingleItem} itemId={this.state.itemId} >
                         <Field label="numberOfPages" field="numberOfPages" />
                         <Field label="publisher" field="publisher" />
                         <Field label="released" field="released" />
                     </ItemDetails>
-                </Col>
+                </Col> */}
             </Row>
         )
     }
 }
+
+export default withRouter(BooksPage)
