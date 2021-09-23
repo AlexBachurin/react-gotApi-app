@@ -25,6 +25,10 @@ export default class BooksPage extends Component {
         })
     }
     render() {
+        if (this.state.error) {
+            return <Error />
+        }
+
         return (
             <Row>
                 <Col md='6'>

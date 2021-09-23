@@ -27,6 +27,10 @@ export default class CharactersPage extends Component {
     }
 
     render() {
+        if (this.state.error) {
+            return <Error />
+        }
+
         return (
             <Row>
                 <Col md='6'>
