@@ -7,11 +7,7 @@ export default class CharDetails extends Component {
 
 
     state = {
-        name: null,
-        born: null,
-        gender: null,
-        died: null,
-        culture: null,
+        item: {},
         loading: true,
         error: false
     }
@@ -28,7 +24,11 @@ export default class CharDetails extends Component {
         //only call function if previous props are not equal current props, else it will update infinetly
         if (this.props.charId !== prevProps.charId) {
             console.log('updated char details')
+            this.setState({
+                loading: true
+            })
             this.getCharacterById()
+
         }
     }
 
@@ -44,16 +44,12 @@ export default class CharDetails extends Component {
         const id = this.props.charId;
         if (id) {
             this.fetchService.getSingleCharacter(id)
-                .then(({ name, gender, born, died, culture }) => {
-                    this.setState(state => {
-                        return {
-                            name: name,
-                            born: born,
-                            gender: gender,
-                            died: died,
-                            culture: culture,
-                            loading: false
-                        }
+                .then(item => {
+                    console.log(item)
+                    this.setState({
+                        item: item,
+                        loading: false
+
                     })
                 })
                 .catch(error => {
@@ -61,10 +57,10 @@ export default class CharDetails extends Component {
                         error: true
                     })
                 })
-        } else {
-            this.setState({
-                loading: false
-            })
+            // } else {
+            //     this.setState({
+            //         loading: false
+            //     })
 
         }
     }
@@ -81,7 +77,7 @@ export default class CharDetails extends Component {
         }
         return (
             <>
-                {loading ? <Loading /> : <ViewComponent {...this.state} />}
+                {loading ? <Loading /> : <ViewComponent {...this.state.item} />}
             </>
         );
     }

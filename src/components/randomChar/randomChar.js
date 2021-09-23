@@ -61,7 +61,7 @@ export default class RandomChar extends Component {
     }
 
     render() {
-        const { name, gender, born, died, culture, loading, error } = this.state;
+        const { loading, error } = this.state;
 
         //if we got error show error block
         if (error) {
@@ -70,28 +70,35 @@ export default class RandomChar extends Component {
         return (
             <>
                 <div className="random-block rounded">
-                    {loading ? <Loading /> : <><h4>Random Character: {name}</h4>
-                        <ul className="list-group list-group-flush">
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span className="term">Gender </span>
-                                <span>{gender}</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span className="term">Born </span>
-                                <span>{born}</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span className="term">Died </span>
-                                <span>{died}</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span className="term">Culture </span>
-                                <span>{culture}</span>
-                            </li>
-                        </ul> </>}
+                    {loading ? <Loading /> : <RandomCharViewComp {...this.state} />}
                 </div>
 
             </>
         );
     }
+}
+
+
+const RandomCharViewComp = ({ name, gender, born, died, culture }) => {
+    return (
+        <><h4>Random Character: {name}</h4>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Gender </span>
+                    <span>{gender}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Born </span>
+                    <span>{born}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Died </span>
+                    <span>{died}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between">
+                    <span className="term">Culture </span>
+                    <span>{culture}</span>
+                </li>
+            </ul> </>
+    )
 }

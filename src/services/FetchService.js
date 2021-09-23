@@ -23,12 +23,14 @@ export default class FetchService extends Component {
 
     }
     //get all characters from 1 page
-    getAllCharacters() {
-        return this.getData('/characters?page=5&pageSize=10')
+    getAllCharacters = async () => {
+        const response = await this.getData('/characters?page=5&pageSize=10');
+        return response.map(this.transformCharacter)
     }
     //get 1 char by id
-    getSingleCharacter(id) {
-        return this.getData(`/characters/${id}`);
+    getSingleCharacter = async (id) => {
+        const character = await this.getData(`/characters/${id}`);
+        return this.transformCharacter(character)
     }
     //get Books
     getAllBooks() {
@@ -48,6 +50,18 @@ export default class FetchService extends Component {
     getSingleHouse(id) {
         this.getData(`/houses/${id}`);
 
+    }
+
+    //transform character
+    transformCharacter({ url, name, born, gender, died, culture }) {
+        return {
+            url: url,
+            name: name || 'no-info',
+            born: born || 'no-info',
+            gender: gender || 'no-info',
+            died: died || 'no-info',
+            culture: culture || 'no-info',
+        }
     }
 }
 

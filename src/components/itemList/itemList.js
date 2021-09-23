@@ -7,7 +7,7 @@ export default class ItemList extends Component {
     service = new FetchService();
 
     state = {
-        characterList: [],
+        itemList: [],
         loading: true,
         error: false
     }
@@ -18,11 +18,11 @@ export default class ItemList extends Component {
     //fetch characters
     getCharacterList = () => {
         this.service.getAllCharacters()
-            .then((list) => {
+            .then(list => {
                 this.setState({
-                    characterList: list,
+                    itemList: list,
                     loading: false
-                })
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -32,13 +32,19 @@ export default class ItemList extends Component {
             })
     }
 
+    componentDidCatch() {
+        this.setState({
+            error: true
+        })
+    }
+
 
     render() {
 
-        const { characterList, error, loading } = this.state;
+        const { itemList, error, loading } = this.state;
         const { getCharacterId } = this.props;
         // create list with items in jsx
-        const list = characterList.map((item) => {
+        const list = itemList.map((item) => {
             //get id, since we dont have it in the object we will extract it from url
             const itemUrl = item.url;
             const id = itemUrl.replace(/\D/g, "")
