@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FetchService from '../../services/FetchService';
-import './charDetails.css';
+import './itemDetails.css';
 import Loading from '../Loading';
 import Error from '../Error';
 
@@ -18,7 +18,7 @@ const Field = ({ item, field, label }) => {
 export { Field };
 
 
-export default class CharDetails extends Component {
+export default class ItemDetails extends Component {
 
 
     state = {
@@ -58,8 +58,9 @@ export default class CharDetails extends Component {
 
     getCharacterById = () => {
         const id = this.props.itemId;
+        const { getSingleItem } = this.props;
         if (id) {
-            this.fetchService.getSingleCharacter(id)
+            getSingleItem(id)
                 .then(item => {
                     console.log(item)
                     this.setState({

@@ -51,9 +51,9 @@ class App extends Component {
                             </Button>{' '}
                         </Col>
                     </Row>
-                    <CharactersPage getAllItems={this.fetchService.getAllCharacters} getItemId={this.getItemId} itemId={itemId} />
-                    <BooksPage getAllItems={this.fetchService.getAllBooks} getItemId={this.getItemId} itemId={itemId} />
-                    <HousesPage getAllItems={this.fetchService.getAllHouses} getItemId={this.getItemId} itemId={itemId} />
+                    <CharactersPage getSingleItem={this.fetchService.getSingleCharacter} getAllItems={this.fetchService.getAllCharacters} getItemId={this.getItemId} itemId={itemId} />
+                    <BooksPage getSingleItem={this.fetchService.getSingleBook} getAllItems={this.fetchService.getAllBooks} getItemId={this.getItemId} itemId={itemId} />
+                    <HousesPage getSingleItem={this.fetchService.getSingleHouse} getAllItems={this.fetchService.getAllHouses} getItemId={this.getItemId} itemId={itemId} />
                 </Container>
             </>
         );
