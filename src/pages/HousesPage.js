@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import ItemList from '../components/itemList'
 import ItemDetails, { Field } from '../components/itemDetails'
+import Error from '../components/Error'
 
 
 export default class BooksPage extends Component {
     //state for storing clicked element id for every page
     state = {
-        itemId: null
+        itemId: null,
+        error: false
     }
 
     //get id of clicked item to show in details
@@ -15,6 +17,11 @@ export default class BooksPage extends Component {
         const clickedId = e.target.id;
         this.setState({
             itemId: clickedId
+        })
+    }
+    componentDidCatch() {
+        this.setState({
+            error: true
         })
     }
     render() {
