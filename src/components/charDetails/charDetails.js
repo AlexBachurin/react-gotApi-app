@@ -24,6 +24,7 @@ export default class CharDetails extends Component {
         //only call function if previous props are not equal current props, else it will update infinetly
         if (this.props.charId !== prevProps.charId) {
             console.log('updated char details')
+            //need to setup loading here, then if we sucessfully fetch we disable loading again
             this.setState({
                 loading: true
             })
