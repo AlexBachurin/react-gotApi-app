@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import ItemList from '../components/itemList'
-import ItemDetails from '../components/itemDetails'
+import ItemDetails, { Field } from '../components/itemDetails'
 
 
 export default class BooksPage extends Component {
@@ -13,7 +13,9 @@ export default class BooksPage extends Component {
                 </Col>
                 <Col md='6'>
                     <ItemDetails getSingleItem={this.props.getSingleItem} itemId={this.props.itemId} >
-
+                        <Field label="numberOfPages" field="numberOfPages" />
+                        <Field label="publisher" field="publisher" />
+                        <Field label="released" field="released" />
                     </ItemDetails>
                 </Col>
             </Row>

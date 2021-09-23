@@ -28,7 +28,6 @@ class App extends Component {
 
     //get id of clicked item to show in details
     getItemId = (e) => {
-        console.log(e.target.getAttribute('name'))
         const clickedId = e.target.id;
         this.setState({
             itemId: clickedId

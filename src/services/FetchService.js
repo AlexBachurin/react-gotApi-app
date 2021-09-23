@@ -74,7 +74,7 @@ export default class FetchService extends Component {
             url: url,
             name: name || 'no-info',
             numberOfPages: numberOfPages || 'no-info',
-            gender: publisher || 'no-info',
+            publisher: publisher || 'no-info',
             released: released || 'no-info',
         }
     }
